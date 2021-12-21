@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+sam-output-template.yaml
+
+# Mac OS and VS Code
+.DS_Store
+.vscode/

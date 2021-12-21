@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "aws-sam-library-api"
+version = "0.1.0"
+description = "An example of creating an API in Lambda that interacts with DynamoDB"
+authors = ["Ash Murphy <amurphy9956@live.com>"]
+
+[tool.poetry.dependencies]
+boto3 = "^1.20.24"
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "21.12b0"
+flake8 = "4.0.1"
+pytest = "6.2.5"
+moto = "2.2.19"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
