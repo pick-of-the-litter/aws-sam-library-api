@@ -1,6 +1,5 @@
 import json
 import os
-import uuid
 
 from boto3 import client
 from moto import mock_dynamodb2
@@ -28,6 +27,12 @@ def library_post_event():
 
 
 @fixture
+def library_get_no_parameters_event():
+    with open(f"{ROOT_DIR}/events/get_book_no_parameters.json") as data:
+        yield json.loads(data.read())
+
+
+@fixture
 def library_get_event():
     with open(f"{ROOT_DIR}/events/get_book.json") as data:
         yield json.loads(data.read())
@@ -50,7 +55,7 @@ def setup_dynamo_db():
     db.put_item(
         TableName=TABLE_NAME,
         Item={
-            "id": {"S": str(uuid.uuid4())},
+            "id": {"S": "123"},
             "author": {"S": "TEST"},
             "title": {"S": "TEST"},
             "pageCount": {"N": str(1)},

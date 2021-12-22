@@ -10,7 +10,6 @@ def handler(event, context):
     table = os.environ["TABLE_NAME"]
 
     if event["httpMethod"] == "POST":
-
         data = json.loads(event["body"])
         id = str(uuid.uuid4())
 
@@ -31,7 +30,21 @@ def handler(event, context):
         }
 
     elif event["httpMethod"] == "GET":
-        pass
+        if not event.get("pathParameters"):
+            return {
+                "headers": {"Content-Type": "application/json"},
+                "statusCode": 400,
+                "body": "GET request is missing an id",
+            }
+
+        book = db.get_item(TableName=table, Key={"id": {"S": event["pathParameters"]["id"]}})
+
+        return {
+            "headers": {"Content-Type": "application/json"},
+            "statusCode": 200,
+            "body": json.dumps({"message": f"Found book: \n{book['Item']}"}),
+        }
+
     elif event["httpMethod"] == "PUT":
         pass
     elif event["httpMethod"] == "DELETE":
