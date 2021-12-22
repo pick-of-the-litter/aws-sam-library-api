@@ -22,4 +22,4 @@ def test_get_event(library_get_event, set_environment):
 def test_post_event(library_post_event, set_environment):
     setup_dynamo_db()
     result = library.handler(library_post_event, None)
-    assert result["statusCode"] == 200
+    assert result["statusCode"] == 201
