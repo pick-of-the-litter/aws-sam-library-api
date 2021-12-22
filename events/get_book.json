@@ -1,0 +1,10 @@
+{
+	"resource": "/books",
+	"path": "/books",
+	"httpMethod": "GET",
+    "pathParameters": {
+		"id": "123"
+	},
+	"body": null,
+	"isBase64Encoded": false
+}

@@ -1,0 +1,7 @@
+{
+	"resource": "/books",
+	"path": "/books",
+	"httpMethod": "POST",
+	"body": "{\"title\": \"The Hobbit\", \"author\": \"A Bloke \",\"pageCount\": 7000}",
+	"isBase64Encoded": false
+}

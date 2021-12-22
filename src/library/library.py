@@ -26,7 +26,7 @@ def handler(event, context):
 
         return {
             "headers": {"Content-Type": "application/json"},
-            "statusCode": 200,
+            "statusCode": 201,
             "body": json.dumps({"message": f"Created entry for {data['title']} with id: {id}"}),
         }
 

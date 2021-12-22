@@ -5,6 +5,13 @@ from tests.library.conftest import setup_dynamo_db
 
 
 @mock_dynamodb2
+def test_get_event(library_get_event, set_environment):
+    setup_dynamo_db()
+    result = library.handler(library_get_event, None)
+    assert result["statusCode"] == 200
+
+
+@mock_dynamodb2
 def test_post_event(library_post_event, set_environment):
     setup_dynamo_db()
     result = library.handler(library_post_event, None)
