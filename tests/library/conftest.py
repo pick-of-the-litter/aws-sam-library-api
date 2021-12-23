@@ -7,7 +7,7 @@ from moto import mock_dynamodb2
 from pytest import fixture
 
 ROOT_DIR = os.path.dirname(os.path.abspath("pyproject.toml"))
-TABLE_NAME = "BooksTable"
+os.environ["TABLE_NAME"] = "BookTable"
 
 
 @fixture
@@ -17,7 +17,6 @@ def set_environment():
     os.environ["AWS_SECURITY_TOKEN"] = "testing"
     os.environ["AWS_SESSION_TOKEN"] = "testing"
     os.environ["AWS_REGION"] = "testing"
-    os.environ["TABLE_NAME"] = TABLE_NAME
 
 
 @fixture
@@ -49,7 +48,7 @@ def setup_dynamo_db():
 
     db = client("dynamodb")
     db.create_table(
-        TableName=TABLE_NAME,
+        TableName=os.environ["TABLE_NAME"],
         KeySchema=[
             {"AttributeName": "id", "KeyType": "HASH"},
         ],
@@ -59,7 +58,7 @@ def setup_dynamo_db():
         ProvisionedThroughput={"ReadCapacityUnits": 5, "WriteCapacityUnits": 5},
     )
     db.put_item(
-        TableName=TABLE_NAME,
+        TableName=os.environ["TABLE_NAME"],
         Item={
             "id": {"S": "123"},
             "author": {"S": "TEST"},
