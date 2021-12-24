@@ -30,3 +30,10 @@ def test_patch_event(library_patch_event, set_environment):
     setup_dynamo_db()
     result = library.handler(library_patch_event, None)
     assert result["statusCode"] == 200
+
+
+@mock_dynamodb2
+def test_delete_event(library_delete_event, set_environment):
+    setup_dynamo_db()
+    result = library.handler(library_delete_event, None)
+    assert result["statusCode"] == 204

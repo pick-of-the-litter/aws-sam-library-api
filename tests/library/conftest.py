@@ -43,6 +43,12 @@ def library_patch_event():
         yield json.loads(data.read())
 
 
+@fixture
+def library_delete_event():
+    with open(f"{ROOT_DIR}/events/delete_book.json") as data:
+        yield json.loads(data.read())
+
+
 @mock_dynamodb2
 def setup_dynamo_db():
 
