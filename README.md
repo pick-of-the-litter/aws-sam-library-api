@@ -1,8 +1,11 @@
 # aws-sam-basic-lambda
-A basic lambda created with SAM. It is invoked by S3, Cloudwatch and an HTTP API. 
+A basic lambda created with SAM.
 
-This project also includes:
+TODO:
 
-- Moto: To mock AWS services in unit tests
-- Pre-commit hooks
-- CI/CD: Jenkins and later on ADO etc
+- Code refactor
+- Azure Devops and Gitlab CI files
+- Dockerise lambdas for image deployments and dockerised pipelines
+- pytestcov and mutmut
+- A frontend project to interact with the lambdas and data in Dynamo
+

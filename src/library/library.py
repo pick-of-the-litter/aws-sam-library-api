@@ -54,7 +54,7 @@ def handler(event, context):
             logger.info("Updating a book.")
             return patch_book(event, db)
         except Exception as e:
-            logger.error(f"The following error occured: {e}")
+            logger.error(f"The following error occured: {repr(e)}")
             return ERROR_RESPONSE
     elif event["httpMethod"] == "DELETE":
         try:
@@ -64,7 +64,12 @@ def handler(event, context):
             logger.error(f"The following error occured: {repr(e)}")
             return ERROR_RESPONSE
     else:
-        pass
+        logger.error(f"Incorrect verb used {event['httpMethod']}")
+        return {
+            "headers": {"Content-Type": "application/json"},
+            "statusCode": 405,
+            "body": json.dumps({"message": "Verb not allowed, acceptable verbs are; POST, GET, PATCH and DELETE."}),
+        }
 
 
 def post_book(event, db):
@@ -119,7 +124,11 @@ def patch_book(event, db):
         db.update_item(
             Key={"id": {"S": id}},
             TableName=TABLE_NAME,
-            ExpressionAttributeNames={"#A": "author", "#T": "title", "#PC": "pageCount"},
+            ExpressionAttributeNames={
+                "#A": "author",
+                "#T": "title",
+                "#PC": "pageCount",
+            },
             ExpressionAttributeValues={
                 ":a": {"S": book.author},
                 ":t": {"S": book.title},

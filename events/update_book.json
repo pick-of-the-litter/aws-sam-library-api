@@ -1,0 +1,10 @@
+{
+	"resource": "/books",
+	"path": "/books/123",
+    "pathParameters": {
+		"id": "123"
+	},
+	"httpMethod": "UPDATE",
+	"body": "{\"title\": \"The Hobbit\", \"author\": \"Patch Test \",\"pageCount\": 300}",
+	"isBase64Encoded": false
+}

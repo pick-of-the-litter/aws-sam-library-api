@@ -49,6 +49,13 @@ def library_delete_event():
         yield json.loads(data.read())
 
 
+@fixture
+def library_update_event():
+    with open(f"{ROOT_DIR}/events/update_book.json") as data:
+        yield json.loads(data.read())
+
+
+# Cannot get this working as a fixture, having to import and call directly
 @mock_dynamodb2
 def setup_dynamo_db():
 
